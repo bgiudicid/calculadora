@@ -1,0 +1,34 @@
+const display = document.querySelector("#display");
+const buttons = document.querySelectorAll("button");
+
+buttons.forEach((item)=>{
+    item.onclick=()=>{
+        if(item.id=="clear"){
+            display.innerText="";
+        } else if(item.id=="backspace"){
+        let string = display.innerText.toString();
+        display.innerText=string.substr(0,string.length-1)
+        //45 (si quito 1 de longitud quedaría 4)
+        } else if(display.innerText != "" && item.id == "equal"){
+            //let cadena = "2+2"
+            display.innerText= eval(display.innerText);
+        } else if(display.innerText=="" && item.id == "equal"){
+            display.innerText = "Null";
+            setTimeout(() => (display.innerText = ""), 2000); //2 segundos
+        }else{
+            display.innerText+=item.id;
+            //8+9/+47454 (ejercicios de asignación +=)
+        }
+    };
+
+});
+
+const themeToggleBtn = document.querySelector(".theme-toggler");
+const calculator = document.querySelector(".calculator");
+
+let isDark =true;
+themeToggleBtn.onclick=()=>{
+    calculator.classList.toggle("dark")
+    themeToggleBtn.classList.toggle("active")
+    isDark =! isDark;
+}
